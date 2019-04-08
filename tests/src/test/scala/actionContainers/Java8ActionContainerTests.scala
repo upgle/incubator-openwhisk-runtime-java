@@ -35,6 +35,7 @@ class JavaActionContainerTests extends BasicActionRunnerTests with WskActorSyste
   // this is true for the Java based runtime but not for actionloop
   // since it does not parse the output and the invoker change the status anyway
   val runtimeDetectErrors = true
+class Java8ActionContainerTests extends BasicActionRunnerTests with WskActorSystem {
 
   // Helpers specific to java actions
   override def withActionContainer(env: Map[String, String] = Map.empty)(
