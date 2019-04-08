@@ -35,4 +35,4 @@ RUN cd /javaAction \
 	&& rm -rf /javaAction/src \
 	&& ./compileClassCache.sh
 
-CMD ["java", "-Dfile.encoding=UTF-8", "-Xshareclasses:cacheDir=/javaSharedCache,readonly", "-Xquickstart", "-jar", "/javaAction/build/libs/javaAction-all.jar"]
+CMD ["java", "--illegal-access=permit", "--add-opens=java.base/java.util=ALL-UNNAMED", "-Dfile.encoding=UTF-8", "-Xshareclasses:cacheDir=/javaSharedCache,readonly", "-Xquickstart", "-jar", "/javaAction/build/libs/javaAction-all.jar"]
