@@ -23,6 +23,7 @@
 
 ## Changelogs
 - [Java 8 CHANGELOG.md](core/java8/CHANGELOG.md)
+- [Java 11 CHANGELOG.md](core/java8/CHANGELOG.md)
 
 
 ## Quick Java Action
