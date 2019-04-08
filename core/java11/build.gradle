@@ -15,25 +15,17 @@
  * limitations under the License.
  */
 
-include 'tests'
+ext.dockerImageName = 'java11action'
+apply from: '../../gradle/docker.gradle'
 
-include 'core:java8'
-include 'core:java11'
-include 'core:java8actionloop'
-include 'core:javaActionBase:proxy'
+distDocker.dependsOn 'copyProxy'
+distDocker.finalizedBy('cleanup')
 
-rootProject.name = 'runtime-java'
+task copyProxy(type: Copy) {
+    from '../javaActionBase/proxy'
+    into 'proxy'
+}
 
-gradle.ext.openwhisk = [
-        version: '1.0.0-SNAPSHOT'
-]
-
-gradle.ext.scala = [
-    version: '2.12.7',
-    compileFlags: ['-feature', '-unchecked', '-deprecation', '-Xfatal-warnings', '-Ywarn-unused-import']
-]
-
-gradle.ext.scalafmt = [
-    version: '1.5.0',
-    config: new File(rootProject.projectDir, '.scalafmt.conf')
-]
+task cleanup(type: Delete) {
+    delete 'proxy'
+}

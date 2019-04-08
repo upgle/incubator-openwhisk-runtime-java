@@ -17,3 +17,15 @@
 
 ext.dockerImageName = 'java8action'
 apply from: '../../gradle/docker.gradle'
+
+distDocker.dependsOn 'copyProxy'
+distDocker.finalizedBy('cleanup')
+
+task copyProxy(type: Copy) {
+    from '../javaActionBase/proxy'
+    into 'proxy'
+}
+
+task cleanup(type: Delete) {
+    delete 'proxy'
+}
