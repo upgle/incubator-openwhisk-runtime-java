@@ -23,7 +23,7 @@
 
 ## Changelogs
 - [Java 8 CHANGELOG.md](core/java8/CHANGELOG.md)
-- [Java 11 CHANGELOG.md](core/java8/CHANGELOG.md)
+- [Java 11 CHANGELOG.md](core/java11/CHANGELOG.md)
 
 
 ## Quick Java Action
@@ -127,7 +127,7 @@ docker login
 
 ## Deploying the Java runtime image to OpenWhisk
 
-Deploy OpenWhisk using ansible environment that contains the kind `java:8`
+Deploy OpenWhisk using ansible environment that contains the kind `java:8` or `java:11`
 Assuming you have OpenWhisk already deployed locally and `OPENWHISK_HOME` pointing to root directory of OpenWhisk core repository.
 
 Set `ROOTDIR` to the root directory of this repository.
