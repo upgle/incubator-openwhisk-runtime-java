@@ -104,30 +104,33 @@ wsk action invoke --result helloJava --param name World
 
 1. Start Docker Desktop (i.e., Docker daemon)
 
-2. Build the Docker runtime image locally using Gradle:
+2. Build the Docker runtime image locally using Gradle for the different runtime versions:
 ```
 ./gradlew core:java8:distDocker
+./gradlew core:java11:distDocker
 ```
-This will produce the image `whisk/java8action` and push it to the local Docker Desktop registry with the `latest` tag.
+This will produce the images with the following names: `whisk/java8action`, `whisk/java11action` and push it to the local Docker Desktop registry with the `latest` tag.
 
 3. Verify the image was registered:
 ```
 $ docker images whisk/*
-REPOSITORY           TAG     IMAGE ID            CREATED             SIZE
-whisk/java8action    latest  35f90453905a        7 minutes ago       521MB
+REPOSITORY            TAG     IMAGE ID            CREATED             SIZE
+whisk/java8action     latest  549c70f347f6        7 minutes ago       563MB
+whisk/java11action    latest  31be41c73e5d        7 minutes ago       693MB
 ```
 
 ### Build and Push image to a remote Docker registry
 
-Build the Docker runtime image locally using Gradle supplying the image Prefix and Registry domain (default port):
+Build the Docker runtime images locally using Gradle supplying the image Prefix and Registry domain (default port):
 ```
 docker login
 ./gradlew core:java8:distDocker -PdockerImagePrefix=$prefix-user -PdockerRegistry=docker.io
+./gradlew core:java11:distDocker -PdockerImagePrefix=$prefix-user -PdockerRegistry=docker.io
 ```
 
 ## Deploying the Java runtime image to OpenWhisk
 
-Deploy OpenWhisk using ansible environment that contains the kind `java:8` or `java:11`
+Deploy OpenWhisk using ansible environment that contains the kind `java:8` and `java:11`
 Assuming you have OpenWhisk already deployed locally and `OPENWHISK_HOME` pointing to root directory of OpenWhisk core repository.
 
 Set `ROOTDIR` to the root directory of this repository.
